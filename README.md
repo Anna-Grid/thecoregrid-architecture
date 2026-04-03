@@ -98,11 +98,11 @@ systemctl restart thecoregrid_watchdog.service    # Neustart Watchdog
 systemctl daemon-reload                           # Linux-Konfiguration (.service) anwenden
 
 # === LOGGING (TROUBLESHOOTING) ===
-journalctl -u coregrid_ai.service -n 50 --no-pager   # Zeige letzte 50 Logs
-ss -tulnp | grep 5000                                # Flask-Socket prüfen
+journalctl -u thecoregrid_ai.service -n 50 --no-pager   # Zeige letzte 50 Logs
+ss -tulnp | grep 5000                                   # Flask-Socket prüfen
 
 # === BUGFIXING UND NOTFÄLLE ===
 wo clean --all                                 # Web-Caches leeren (Nginx/Redis)
 pkill -f aggregator.py                         # Zombie-Prozesse vernichten (fix: 409 Conflict)
-rm -rf /root/coregrid_ai/__pycache__           # Python-Cache leeren (bei Wechsel der API Keys)
-sqlite3 /root/coregrid_ai/articles_memory.db "SELECT count(*) FROM processed;" # DB prüfen
+rm -rf /root/thecoregrid_ai/__pycache__        # Python-Cache leeren (bei Wechsel der API Keys)
+sqlite3 /root/thecoregrid_ai/articles_memory.db "SELECT count(*) FROM processed;" # DB prüfen
