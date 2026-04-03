@@ -1,0 +1,1 @@
+# thecoregrid-architecture
