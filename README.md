@@ -9,6 +9,7 @@
 **Zielgruppe:** SRE, DevOps, System Architects, Tech Leads  
 **Maintainer:** Founder / CTO  
 
+[➡️ View C4 Architectural Diagrams](docs/architecture.md)
 ---
 
 ## 1. EXECUTIVE SUMMARY & DATA FLOW (ARCHITEKTURÜBERBLICK)
