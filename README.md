@@ -62,6 +62,8 @@ Alle Bots sind fest in den Linux-Kernel als unabhängige, selbstheilende Dienste
 * **Funktion:** SRE-Tool (Site Reliability Engineering). Liest System-Logs (`journalctl`) der restlichen Bots. Das neuronale Netz filtert das Systemrauschen (Noise) und erstellt eine menschliche Diagnose.
 * **Verwaltung:** Ermöglicht die hardwarenahe Leerung des Caches (`wo clean --all`) und das Abrufen von CPU/RAM/Disk-Metriken direkt aus Telegram.
 
+   💡 Code Showcase: See how we solved Linux ARG_MAX limits and implemented AIOps log parsing in our thecoregrid-architerkture/code_snippets/
+
 ---
 
 ## 4. WORDPRESS-UMGEBUNG (FRONTEND & CMS)
