@@ -39,19 +39,19 @@ Wir nutzen KI-Pipelines (NLP-Modelle, maschinelle Übersetzungen) zur Aggregatio
 
 Alle Bots sind fest in den Linux-Kernel als unabhängige, selbstheilende Dienste (Daemons) via `systemd` verankert.
 
-### 🟢 Microservice 1: KI-Redakteur (`coregrid_ai.service`)
+### 🟢 Microservice 1: KI-Redakteur (`thecoregrid_ai.service`)
 * **Pfad:** `/root/thecoregrid_ai/aggregator.py`
 * **Funktion:** Nachrichtenaggregator, Generierung von Longreads, Generierung von Fun-Posts für Telegram (Befehl: *telega*), Layout von Digests.
 * **Besonderheiten (V4.0):** Nutzt `subprocess` und `WP-CLI`. Dies umgeht die HTTP-Authentifizierung und injiziert Daten direkt in die WordPress-DB. Geschützt vor "Database Lock" beim Arbeiten mit der integrierten SQLite3. Verfügt über einen Smart Fallback Parser, der die Artikelstruktur wiederherstellt, selbst wenn das LLM das HTML-Markup zerstört hat.
 * **Data Engineering & RAG (Oracle):** Ein Mechanismus zur semantischen Komprimierung ist implementiert. Jeder Artikel wird von `gpt-4o-mini` in ein komprimiertes Extrakt verarbeitet und in der DB (`knowledge_graph`) mit strenger Ontologie der Kategorien gespeichert. Auf den Befehl *trend [Tage] [Kategorie]* zieht der Bot ein Array aus Wissen und verfasst eine Predictive Analytics-Vorhersage für die nächsten 6-12 Monate.
 * **WP-CLI STDIN Hack:** Um das systembedingte Linux-Limit (`ARG_MAX`) für die Länge von Befehlszeilen zu umgehen, wird der HTML-Code der Artikel als Datenstrom via STDIN in den WordPress-Core eingespeist (`wp post create -`). Polylang-Sprachen werden über einen harten PHP-Code-Inject im Terminal zugewiesen (`wp eval "pll_set_post_language..."`), wodurch die Kapriolen der Plugin-API umgangen werden.
 
-### 🌍 Microservice 2: Distributor (`coregrid_gateway.service`)
+### 🌍 Microservice 2: Distributor (`thecoregrid_gateway.service`)
 * **Pfad:** `/opt/thecoregrid_bots/bot_gateway/bot.py`
 * **Funktion:** Im Inneren läuft ein Flask-Server auf dem geschlossenen Port 5000. Wartet auf den Webhook von WordPress.
 * **Graceful Degradation (Fallbacks):** Wenn OpenAI einen API-Fehler zurückgibt, greift der Fallback-Algorithmus — der Bot veröffentlicht eine Fallback-Phrase ("👀 Schau mal, ein neuer Artikel ist erschienen") samt korrekter URL. Wenn die Textgröße das Telegram-Limit für Bildunterschriften (1024 Zeichen) überschreitet, stürzt der Bot nicht ab, sondern sendet den Text automatisch als separate Nachricht ohne Foto.
 
-### 🛡 Microservice 3: AIOps Watchdog (`coregrid_watchdog.service`)
+### 🛡 Microservice 3: AIOps Watchdog (`thecoregrid_watchdog.service`)
 * **Pfad:** `/root/thecoregrid_ai/watchdog.py`
 * **Funktion:** SRE-Tool (Site Reliability Engineering). Liest System-Logs (`journalctl`) der restlichen Bots. Das neuronale Netz filtert das Systemrauschen (Noise) und erstellt eine menschliche Diagnose.
 * **Verwaltung:** Ermöglicht die hardwarenahe Leerung des Caches (`wo clean --all`) und das Abrufen von CPU/RAM/Disk-Metriken direkt aus Telegram.
