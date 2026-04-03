@@ -1,4 +1,9 @@
 # 📖 Technical Architecture & Engineering Documentation: ThecoreGrid.dev
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04-orange?logo=ubuntu&logoColor=white)
+![WordPress](https://img.shields.io/badge/WordPress-Headless-21759b?logo=wordpress&logoColor=white)
+![OpenAI](https://img.shields.io/badge/AI-GPT--5.3--latest-412991?logo=openai&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Production-success)
 
 **Systemversion:** 4.0 (März 2026) | **Status:** Production / Stable  
 **Zielgruppe:** SRE, DevOps, System Architects, Tech Leads  
