@@ -1,0 +1,1 @@
+Thank you for your interest in The coregrid.Dev! As this repository serves as an architectural showcase for our production environment, we do not accept direct Pull Requests to the core logic. However, if you are a DevOps engineer or Architect and want to discuss system design, feel free to open an Issue or contact the Founder via Telegram.
